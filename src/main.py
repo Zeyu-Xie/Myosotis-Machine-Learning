@@ -6,7 +6,7 @@ from PIL import Image
 
 # Data
 img_train = []   # 60000 Images, Each Has Length of 28*28=728
-label_train = []  # 60000 Integers, Each from range(0, 19)
+label_train = [] # 60000 Integers, Each from range(0, 19)
 img_test = []    # 10000 Images
 label_test = []  # 10000 Integers
 
@@ -39,13 +39,16 @@ def num_gradient(f, x):
         x[i] = tmp_val
     return grad
 
-def f_1(x):
-    return 0.01*x**2+0.1*x
+# Function - Gradient Descent
+def gradient_descent(f, init_x, lr=0.01, step_num=100):
+    x = init_x
+    for i in range(step_num):
+        grad = num_gradient(f, x)
+        x -= lr * grad
+    return x
 
 # Main
 if __name__ == "__main__":
 
     # Init
     init()
-
-    print(num_diff(f_1, 10.0))
