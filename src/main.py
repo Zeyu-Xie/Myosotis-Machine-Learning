@@ -1,4 +1,4 @@
-import matplotlib
+import matplotlib.pylab as plt
 import numpy as np
 import os
 from mnist import load_mnist # Load MNIST
@@ -19,8 +19,18 @@ def init():
     # Image & Label
     (img_train, label_train), (img_test, label_test) = load_mnist(flatten = True, normalize = False)
 
+def f_1 (x):
+    return 0.01*x**2+0.1*x
+
 # Main
 if __name__ == "__main__":
 
     # Init
     init()
+
+    x = np.arange(0.0, 20.0, 0.1) # 以0.1为单位，从0到20的数组x
+    y = f_1(x)
+    plt.xlabel("x")
+    plt.ylabel("f(x)")
+    plt.plot(x, y)
+    plt.savefig('output.png')
